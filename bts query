@@ -1,0 +1,13 @@
+ALTER TABLE `order_hds` ADD `type` VARCHAR(191) NULL DEFAULT NULL AFTER `transaction_attachment`, ADD `model_id` INT NULL DEFAULT NULL AFTER `type`;
+
+ALTER TABLE `order_hds` ADD `ship_amount` INT NULL DEFAULT NULL AFTER `model_id`;
+ALTER TABLE `order_hds` ADD `quantity` INT NOT NULL DEFAULT '1' AFTER `ship_amount`;
+
+
+ALTER TABLE `order_hds` CHANGE `address` `address` VARCHAR(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+
+new 7/9/22
+Do you really want to execute "ALTER TABLE `users` DROP `active`;"?
+ALTER TABLE `users` ADD `active` TINYINT NOT NULL DEFAULT '1' AFTER `address`;
+ALTER TABLE `books` ADD `orderNo` INT NOT NULL DEFAULT '99999' AFTER `is_hard`;
