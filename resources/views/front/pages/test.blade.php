@@ -26,11 +26,17 @@
                         <tr>
                             <td>{{$test->title}}</td>
                             <td>{{$test->date}}</td>
-                            <td>{{$test->announce_date}}</td>
-                            <td>{{$test->price}}</td>
-                            {{-- <td>{{$test->test_status}}</td> --}}
+                            <td>{{
+                                    date('d M Y',strtotime($test->announce_date))
+                                }}</td>
+                            {{-- <td>{{$test->price}}</td> --}}
+                            <td>{{date('y M Y', strtotime($test->last_date))}}</td>
                             <td>
+                                @if(Auth::check())
                                 <button class="btn btn-primary btn-sm" onclick="testApplyModal({{ $test->id }})">Apply</button>
+                                @else
+                                <a href="{{route('login')}}" class="btn btn-primary btn-sm">Login to Apply</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -56,8 +62,8 @@
                         <tr>
                             <td>{{$test->title}}</td>
                             <td>{{$test->date}}</td>
-                            <td>{{$test->announce_date}}</td>
-                            <td>{{$test->price}}</td>
+                            <td>{{ date('d M Y', strtotime($test->announce_date)) }}</td>
+                            <td>{{date('y M Y', strtotime($test->last_date))}}</td>
                             {{-- <td>{{$test->test_status}}</td> --}}
                             <td>
                                 <button class="btn btn-primary btn-sm">Result</button>
@@ -82,7 +88,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('test.apply') }}" method="POST">
+                <form action="" method="POST">
                 {{-- <form action="" method="POST"> --}}
                     @csrf
                     <input type="hidden" name="test_id" id="test_id">

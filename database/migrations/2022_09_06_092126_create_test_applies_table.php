@@ -21,6 +21,12 @@ class CreateTestAppliesTable extends Migration
             $table->date('date');
             // transaction id
             $table->string('transaction_id')->nullable();
+            // payment status
+            $table->string('payment_status')->nullable();
+            // test random code
+            $table->string('test_code')->nullable();
+            // test password
+            $table->string('test_password')->nullable();
             $table->timestamps();
         });
     }
