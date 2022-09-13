@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\TestApply;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class TestApplyController extends Controller
 {
@@ -36,7 +37,31 @@ class TestApplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $test_id = $request->test_id;
+        $request->validate([
+            'cnic' => 'required|unique:test_applies,cnic,'.$test_id,
+        ]);
+        $testApply = new TestApply();
+        $testApply->test_id = $request->test_id;
+        $testApply->user_id = 1;
+        $testApply->date = date('Y-m-d');
+        $testApply->test_code = rand(100000, 999999);
+        $testApply->name = $request->name;
+        $testApply->email = $request->email;
+        $testApply->phone = $request->phone;
+        $testApply->address = $request->address;
+        $testApply->cnic = $request->cnic;
+        $testApply->message = $request->message;
+        $testApply->province = $request->province;
+        $testApply->district = $request->district;
+        $testApply->tehsil = $request->tehsil;
+        $testApply->test_password = Hash::make(rand(100000, 999999));
+        
+        if($testApply->save()){
+            return redirect()->back()->with('success', 'Test Apply Successfully');
+        }else{
+            return redirect()->back()->with('error', 'Test Apply Failed');
+        }
     }
 
     /**

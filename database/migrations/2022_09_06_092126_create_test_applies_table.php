@@ -25,6 +25,24 @@ class CreateTestAppliesTable extends Migration
             $table->string('payment_status')->nullable();
             // test random code
             $table->string('test_code')->nullable();
+            // name
+            $table->string('name');
+            // email
+            $table->string('email');
+            // phone
+            $table->string('phone'); 
+            // cnic
+            $table->string('cnic');
+            // address
+            $table->string('address');
+            // message
+            $table->text('message')->nullable();
+            // province
+            $table->string('province')->nullable();
+            // district
+            $table->string('district')->nullable();
+            // tehsil
+            $table->string('tehsil')->nullable();
             // test password
             $table->string('test_password')->nullable();
             $table->timestamps();

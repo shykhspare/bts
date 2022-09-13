@@ -328,4 +328,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 });
 
 // test apply
-Route::get('/test/{test}', 'TestApplyController@apply')->name('test.apply');
+// Route::get('/test/{test}', 'TestApplyController@apply')->name('test.apply');
+Route::resource('testapplies', 'App\Http\Controllers\Admin\TestApplyController');
+// print slip
+Route::get('/testapplies/print', 'App\Http\Controllers\Admin\TestApplyController@print')->name('testapplies.print');
