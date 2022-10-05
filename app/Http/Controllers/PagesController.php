@@ -44,8 +44,9 @@ class PagesController extends Controller
         $books = Book::where('enabled', 1)->orderBy('orderNo')->limit(12)->get();
         $authors = Author::where('enabled', 1)->with('books')->inRandomOrder()->limit(20)->get();
 
-        $slides = Slide::get();
-        return view('front/pages/index', compact('categories', 'books', 'bestsellings', 'authors', 'slides'));
+        $leftslides = Slide::where('type', 0)->get();
+        $rightslides = Slide::where('type', 1)->get();
+        return view('front/pages/index', compact('categories', 'books', 'bestsellings', 'authors', 'leftslides', 'rightslides'));
     }
 
     public function book($slug)

@@ -97,6 +97,16 @@
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
                     </div>
+                    {{-- gender --}}
+                    <div class="form-group">
+                        <label for="province">Gender</label>
+                        <select name="gender" id="gender" class="form-control" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="phone">Phone</label>
                         <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter your phone" required>
@@ -158,14 +168,13 @@
             </div>
             <div class="modal-body">
                 <form id="slipForm">
-                    @csrf
-                    <input type="hidden" name="test_id" id="test_id">
+                    <input type="hidden" name="test_id" id="test_idd">
                     <div class="form-group">
                         <label for="cnic">CNIC</label>
                         <input type="text" name="cnic" id="cnic" class="form-control" placeholder="Enter your cnic" required>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary btn-block printSubmit">Print Slip</button>
+                        <button type="button" class="btn btn-primary btn-block printSubmit" onclick="apply()">Print Slip</button>
                     </div>
                 </form>
             </div>
@@ -182,26 +191,43 @@
 
     // printSlipModal
     function printSlipModal(id) {
-        $('#test_id').val(id);
+        $('#test_idd').val(id);
         $('#printSlipModal').modal('show');
     }
 
     // slipForm onsubmit return false and make ajax request
     // printSubmit click
-    $('.printSubmit').click(function() {
+    function apply() {
         var form = $('#slipForm');
         var formData = form.serialize();
+        // ajax setup
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
             url: "{{ route('testapplies.print') }}",
             type: "POST",
             data: formData,
             success: function(data) {
-                console.log(data);
+                // trim the data
+                var data = data.trim();
+                if(data == 'success') {
+                    // redirect to print page with the formData in post method
+                    form.attr('action', "{{ route('testapplies.printOurSlip') }}");
+                    form.attr('method', 'POST');
+                    // include csrf token
+                    form.append('<input type="hidden" name="_token" value="{{ csrf_token() }}">');
+                    form.submit();
+                } else {
+                    alert('Invalid CNIC');
+                }
             },
             error: function(data) {
                 console.log(data);
             }
         });
-    });
+    }
 </script>
 @endsection

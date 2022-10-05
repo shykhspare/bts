@@ -27,6 +27,7 @@ class UpdateSlide extends FormRequest
     {
         return [
             'description' => ['nullable', 'string'],
+            'type' => ['required', 'string'],
             
         ];
     }

@@ -9,19 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base_url" content="{{ URL::to('/') }}">
-    <link rel="shortcut icon" href="{{ asset('UI/assets/img/favicon.png')}}">
+    <link rel="shortcut icon" href="{{ asset('UI/assets/img/favicon.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/font-awesome/css/fontawesome-all.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/flaticon/font/flaticon.css')}}">
-    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/animate.css/animate.css')}}">
-    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/slick-carousel/slick/slick.css')}}" />
-    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css')}}">
-    <link rel="stylesheet" href="{{asset('UI/assets/vendor/intl-tel-input-master/build/css/intlTelInput.css')}}">
-    <link rel="stylesheet" href="{{ asset('UI/assets/css/theme.css')}}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <!-- <link href="{{ asset('UI/assets/vendor/bootstrap5/css/bootstrap.min.css')}}" rel="stylesheet"> -->
-    <!-- <script src="{{ asset('UI/assets/vendor/bootstrap5/js/bootstrap.bundle.min.js')}}"></script> -->
+    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/font-awesome/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/flaticon/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/animate.css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/slick-carousel/slick/slick.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('UI/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('UI/assets/vendor/intl-tel-input-master/build/css/intlTelInput.css') }}">
+    <link rel="stylesheet" href="{{ asset('UI/assets/css/theme.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <!-- <link href="{{ asset('UI/assets/vendor/bootstrap5/css/bootstrap.min.css') }}" rel="stylesheet"> -->
+    <!-- <script src="{{ asset('UI/assets/vendor/bootstrap5/js/bootstrap.bundle.min.js') }}"></script> -->
 </head>
 
 <body>
@@ -42,24 +44,25 @@
 
 
 
-    <script src="{{ asset('UI/assets/vendor/jquery/dist/jquery.min.js')}}"></script>
-    <script src="{{ asset('UI/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js')}}"></script>
-    <script src="{{ asset('UI/assets/vendor/popper.js/dist/umd/popper.min.js')}}"></script>
-    <script src="{{ asset('UI/assets/vendor/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('UI/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
-    <script src="{{ asset('UI/assets/vendor/slick-carousel/slick/slick.min.js')}}"></script>
-    <script src="{{ asset('UI/assets/vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js')}}"></script>
-    <script src="{{ asset('UI/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+    <script src="{{ asset('UI/assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/popper.js/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/slick-carousel/slick/slick.min.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}">
+    </script>
 
-    <script src="{{ asset('UI/assets/js/hs.core.js')}}"></script>
-    <script src="{{ asset('UI/assets/js/components/hs.unfold.js')}}"></script>
-    <script src="{{ asset('UI/assets/js/components/hs.malihu-scrollbar.js')}}"></script>
-    <script src="{{ asset('UI/assets/js/components/hs.header.js')}}"></script>
-    <script src="{{ asset('UI/assets/js/components/hs.slick-carousel.js')}}"></script>
-    <script src="{{ asset('UI/assets/js/components/hs.selectpicker.js')}}"></script>
-    <script src="{{ asset('UI/assets/js/components/hs.show-animation.js')}}"></script>
-    <script src="{{asset('UI/assets/vendor/intl-tel-input-master/build/js/intlTelInput.js')}}"></script>
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+    <script src="{{ asset('UI/assets/js/hs.core.js') }}"></script>
+    <script src="{{ asset('UI/assets/js/components/hs.unfold.js') }}"></script>
+    <script src="{{ asset('UI/assets/js/components/hs.malihu-scrollbar.js') }}"></script>
+    <script src="{{ asset('UI/assets/js/components/hs.header.js') }}"></script>
+    <script src="{{ asset('UI/assets/js/components/hs.slick-carousel.js') }}"></script>
+    <script src="{{ asset('UI/assets/js/components/hs.selectpicker.js') }}"></script>
+    <script src="{{ asset('UI/assets/js/components/hs.show-animation.js') }}"></script>
+    <script src="{{ asset('UI/assets/vendor/intl-tel-input-master/build/js/intlTelInput.js') }}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -68,7 +71,7 @@
             }
         });
     </script>
-    <script src="{{asset('js/custom.js')}}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     <script>
         $(document).on('ready', function() {
 
@@ -86,6 +89,8 @@
 
             // initialization of show animations
             $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+            // $('.js-slick-carousel').attr('dir', 'ltr');
 
             // init zeynepjs
             var zeynep = $('.zeynep').zeynep({

@@ -55,7 +55,10 @@ class TestApplyController extends Controller
         $testApply->province = $request->province;
         $testApply->district = $request->district;
         $testApply->tehsil = $request->tehsil;
-        $testApply->test_password = Hash::make(rand(100000, 999999));
+        // password_value
+        $pass = rand(100000, 999999);
+        $testApply->password_value = $pass;
+        $testApply->test_password = Hash::make($pass);
         
         if($testApply->save()){
             return redirect()->back()->with('success', 'Test Apply Successfully');
@@ -111,7 +114,24 @@ class TestApplyController extends Controller
 
     
     // apply 
-    public function apply(Request $request, $test){
-        
+    public function print(Request $request){
+        // check if test is applied or not
+        $testApply = TestApply::where('test_id', $request->test_id)->where('cnic', $request->cnic)->first();
+        if($testApply){
+            return 'success';
+        }else{
+            return 'failuer';
+        }
+    }
+
+    // printOurSlip
+    public function printOurSlip(Request $request){
+        $student = TestApply::where('test_id', $request->test_id)->where('cnic', $request->cnic)->first();
+        if($student){
+            $password = $student->test_password;
+            return view('front.pages.printOurSlip', compact('student'));
+        }else{
+            return redirect()->back()->with('error', 'Test Not Applied');
+        }
     }
 }
