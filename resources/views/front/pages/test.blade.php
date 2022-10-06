@@ -32,7 +32,12 @@
                             {{-- <td>{{$test->price}}</td> --}}
                             <td>{{date('y M Y', strtotime($test->last_date))}}</td>
                             <td>
+                                @if(date('Y-m-d',strtotime($test->date)) == date('Y-m-d'))
+                                <button href="#" class="btn btn-primary btn-sm btn-success" onclick="testStart({{ $test->id }})">Start Test</button>
+                                @else
                                 <button class="btn btn-primary btn-sm" onclick="testApplyModal({{ $test->id }})">Apply</button>
+                                @endif
+                                
                                 <button class="btn btn-primary btn-sm" onclick="printSlipModal({{ $test->id }})">Print Slip</button>
                             </td>
                         </tr>
@@ -156,6 +161,36 @@
     </div>
 </div>
 
+<div class="modal fade" id="testStartModal" tabindex="-1" role="dialog" aria-labelledby="testStartModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="testStartModalLabel">Start Test</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    @csrf
+                    <input type="hidden" name="test_id" id="test_id">
+                    <div class="form-group">
+                        <label for="test_code">Test Code</label>
+                        <input type="text" name="test_code" id="test_code" class="form-control" placeholder="Enter your test code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="test_password">Test Password</label>
+                        <input type="password" name="test_password" id="test_password" class="form-control" placeholder="Enter your test password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" onclick="checkUserCredentials()" class="btn btn-primary btn-block">Start Test</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{-- printSlipModal --}}
 <div class="modal fade" id="printSlipModal" tabindex="-1" role="dialog" aria-labelledby="printSlipModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -183,20 +218,49 @@
 </div>
 
 <script>
-    // testApplyModal
+    function checkUserCredentials() {
+        var test_id = $('#test_id').val();
+        var test_code = $('#test_code').val();
+        var test_password = $('#test_password').val();
+        $.ajax({
+            url: "{{route('testapplies.checkUserCredentials')}}",
+            type: "POST",
+            data: {
+                test_id: test_id,
+                test_code: test_code,
+                test_password: test_password,
+                _token: "{{csrf_token()}}"
+            },
+            success: function (data) {
+                data =  data.replace(/^\s+|\s+$/gm, '');
+
+                if (data == 'success') {
+                    alert('success');
+                } 
+                else if(data == 'Invalid') {
+                    alert('Invalid Credentials');
+                }else if(data == 'payment') {
+                    alert('Please pay the fee first');
+                }
+            }
+        });
+    }
+
+
+    function testStart(id) {
+        $('#test_id').val(id);
+        $('#testStartModal').modal('show');
+    }
     function testApplyModal(id) {
         $('#test_id').val(id);
         $('#testApplyModal').modal('show');
     }
 
-    // printSlipModal
     function printSlipModal(id) {
         $('#test_idd').val(id);
         $('#printSlipModal').modal('show');
     }
 
-    // slipForm onsubmit return false and make ajax request
-    // printSubmit click
     function apply() {
         var form = $('#slipForm');
         var formData = form.serialize();

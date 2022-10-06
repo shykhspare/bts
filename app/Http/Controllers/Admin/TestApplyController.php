@@ -134,4 +134,30 @@ class TestApplyController extends Controller
             return redirect()->back()->with('error', 'Test Not Applied');
         }
     }
+
+    public function checkUserCredentials(Request $request){
+        $test_id = $request->test_id;
+        $test_code = $request->test_code;
+        $password = $request->password;
+        $student = TestApply::where('test_id', $test_id)->where('test_code', $test_code)->first();
+        if($student){
+            if($student->payment_status == 1){
+            }else{
+                echo 'payment';
+                return ;
+                exit;
+            }
+            if(Hash::check($password, $student->test_password)){
+                echo 'success';
+                return ;
+            }else{
+                echo 'failuer';
+                return ;
+            }
+        }else{
+            echo 'Invalid';
+            return ;
+        }
+    }
+    
 }

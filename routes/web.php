@@ -334,3 +334,5 @@ Route::resource('testapplies', 'App\Http\Controllers\Admin\TestApplyController')
 Route::post('/testapplies/print', 'App\Http\Controllers\Admin\TestApplyController@print')->name('testapplies.print');
 // printOurSlip
 Route::post('/testapplies/printOurSlip', 'App\Http\Controllers\Admin\TestApplyController@printOurSlip')->name('testapplies.printOurSlip');
+// checkUserCredentials
+Route::post('/testapplies/checkUserCredentials', 'App\Http\Controllers\Admin\TestApplyController@checkUserCredentials')->name('testapplies.checkUserCredentials');
